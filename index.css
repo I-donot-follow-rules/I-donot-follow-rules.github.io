@@ -1,0 +1,14 @@
+.nav{
+    font-size: large;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.nav li{
+    background-color: black;
+    padding: 1rem;
+}
+.nav a{
+    color: #ff0;
+}
