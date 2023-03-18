@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome to my website</title>
+        <style>
+            body {
+                background-image: url("Media/E.jpg");
+                background-size: cover;
+                color: aquamarine;
+            }
+            #story{
+                background-color: rgb(241, 35, 35);
+                font-size: x-large;
+                padding: 1rem;
+                margin:1rem;
+            }
+            .buttons{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .buttons button{
+                font-size: x-large;
+                padding: 1mm;
+                border: none;
+                border-radius: 1rem;
+                filter: drop-shadow(1px 12px 10px rgba(0, 0, 0, 0.81));
+            }
+        </style>
+        <link rel="stylesheet" href="index.css"/>
+
+        <script src="story.js"></script>
+    </head>
+    <body>
+        
+        <h1>Welcome to my First Website</h1>
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Games.html">Games</a></li>
+            <li><a href="Songs.html">Songs</a></li>
+            <li><a href="story.html">Story</a></li>
+        </ul>
+        <div id="story">
+        </div>
+
+        <template id="once-upon-a-time">
+            <p>Once upon a time, there was a king who was</p>
+            <div class="buttons">
+                <button data-template="very-kind-option">very kind</button>
+                <button data-template="very-rude-option">very rude</button>
+            </div>
+        </template>
+        <template id="very-kind-option">
+            <p>Once upon a time, there was a king who was very kind ,gave money to charity and was always in a good mood.</p>  
+        </template>
+        
+        <template id="very-rude-option">
+            <p>Once upon a time, there was a king who was very rude. He used to scream at everybody for the smallest of things. This king was also very spoilt.</p>  
+        </template>
+    </body>
+</html>
+
+
+
+
