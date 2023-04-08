@@ -8,10 +8,20 @@
                 background-size: cover;
                 color: aquamarine;
             }
+            #snakie {
+                display: flex;
+                justify-content: center;
+            }
+            #snake-board {
+                width: 475px;
+            }
         </style>
         <link rel="stylesheet" href="index.css"/>
+
+        <script src="snake.js"></script>
     </head>
     <body>
+        
         <h1>Welcome to my First Website</h1>
         <ul class="nav">
             <li><a href="index.html">Home</a></li>
@@ -20,6 +30,11 @@
             <li><a href="story.html">Story</a></li>
             <li><a href="snake.html">Play Snake!</a></li>
         </ul>
+        <div id="snakie">
+            <canvas id="snake-board" width="850" height="850"></canvas>
+        </div>
+        
     </body>
 </html>
-<!--  -->
+
+
