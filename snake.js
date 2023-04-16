@@ -16,6 +16,7 @@ window.addEventListener("DOMContentLoaded", function () {
     let snake = Snake([Cell(10,4), Cell(10,3), Cell(10,2)], Direction.Right) 
     let apple = randomApple(snake.bodyParts)
     let canChangeDirection = true
+    let score = 0
     function Snake(bodyParts, direction) {
         return {bodyParts, direction}
     }
@@ -99,6 +100,7 @@ window.addEventListener("DOMContentLoaded", function () {
             return [apple, snake]
         }
         let ateApple = newHead.row === apple.row && newHead.col === apple.col
+        if (ateApple) score++
         let newTail = ateApple ? bodyParts : bodyParts.slice(0, -1)
         if (hasCell(newHead, newTail)) {
             clearInterval(intervalId)
@@ -109,11 +111,15 @@ window.addEventListener("DOMContentLoaded", function () {
         let newApple = ateApple ? randomApple(newSnake.bodyParts) : apple
         return [newApple, newSnake]
     }
-    function animate (apple, snake) {        
+    function animate (apple, snake) { 
+        draw(apple, snake)       
+        return updateGame(apple, snake)
+    }
+    function draw (apple, snake) {
         drawBoard()
         drawApple(apple)
         drawSnake(snake)
-        return updateGame(apple, snake)
+        document.getElementById("score").innerText = `Score: ${score}`
     }
     window.addEventListener("keydown", function (event) {
         if (! canChangeDirection) return
@@ -122,31 +128,49 @@ window.addEventListener("DOMContentLoaded", function () {
                 if (snake.direction !== Direction.Down){
                     snake.direction = Direction.Up;
                     canChangeDirection = false
+                    if (! intervalId) {
+                        startGame()
+                    }
                 }
                 break;
             case "ArrowDown":
                 if (snake.direction !== Direction.Up){
                     snake.direction = Direction.Down;
                     canChangeDirection = false
+                    if (! intervalId) {
+                        startGame()
+                    }
                 }
                 break;
             case "ArrowLeft":
                 if (snake.direction !== Direction.Right){
                     snake.direction = Direction.Left;
                     canChangeDirection = false
+                    if (! intervalId) {
+                        startGame()
+                    }
                 }
                 break;   
             case "ArrowRight":
                 if (snake.direction !== Direction.Left){
                     snake.direction = Direction.Right;
                     canChangeDirection = false
+                    if (! intervalId) {
+                        startGame()
+                    }
                 }
                 break;             
         }
     })
-    let intervalId = setInterval(function() {
-        ([apple, snake] = animate(apple, snake))
-        canChangeDirection = true
-    }, 1000/7.5)
+    function startGame () {
+        let message = document.getElementById("press-and-begin")
+        message.style.display = "none"
+        intervalId = setInterval(function() {
+            ([apple, snake] = animate(apple, snake))
+            canChangeDirection = true
+        }, 1000/7.5)
+    }
+    draw(apple, snake)
+    let intervalId 
 
 })  
